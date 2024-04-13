@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -36,24 +37,49 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMovement()
     {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
-
-        Vector3 temp = transform.position;
-
-        if (horizontalInput != 0f)
+        
+        //Vertical Movement
+        if (Input.GetAxisRaw("Vertical") > 0f)
         {
-            temp.x += horizontalInput * speed * Time.deltaTime;               //All of this can be scraped when creating vertices type movement
-            temp.x = Mathf.Clamp(temp.x, x_min, x_max);
-        }
+            Vector3 temp = transform.position;
+            temp.y += speed * Time.deltaTime;
 
-        if (verticalInput != 0f)
+            if (temp.y > y_max)
+                temp.y = y_max;
+            transform.position = temp;
+        }
+        else if (Input.GetAxisRaw("Vertical") < 0f)
         {
-            temp.y += verticalInput * speed * Time.deltaTime;
-            temp.y = Mathf.Clamp(temp.y, y_min, y_max);
-        }
+            Vector3 temp = transform.position;
+            temp.y -= speed * Time.deltaTime;
 
-        transform.position = temp;
+            if (temp.y < y_min)
+                temp.y = y_min;
+            
+            transform.position = temp;
+        }
+        
+        //Horizontal Movement
+        else if (Input.GetAxisRaw("Horizontal") > 0f)
+        {
+            Vector3 temp = transform.position;
+            temp.x += speed * Time.deltaTime;
+
+            if (temp.x < x_max)
+                temp.x = x_max;
+
+            transform.position = temp;
+        }
+        else if (Input.GetAxisRaw("Horizontal") < 0f)
+        {
+            Vector3 temp = transform.position;
+            temp.x -= speed * Time.deltaTime;
+
+            if (temp.x < x_min)
+                temp.x = x_min;
+
+            transform.position = temp;
+        }
     }
 
     void Shoot()

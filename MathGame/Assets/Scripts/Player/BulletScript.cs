@@ -29,6 +29,6 @@ public class BulletScript : MonoBehaviour
 
     public void DestroyingBullet()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
