@@ -1,32 +1,23 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float shootingTimer = 0.5f;
+    [SerializeField] private GameObject shootingPosition;
+    [SerializeField] private GameObject shootingBullets;
+    [SerializeField] private float yMin, yMax;
+    [SerializeField] private float xMin, xMax;
 
-    [SerializeField] public float speed = 5f; //Remove when implementing vertices type movement.
-
-
-    [SerializeField] private float shooting_Timer = 0.5f;
-    [SerializeField] private GameObject shooting_Position;
-    [SerializeField] private GameObject shooting_Bullets;
-
-
-
-    private float current_Shooting_Timer;
+    private float currentShootingTimer;
     private bool canShoot;
-    
-    private float y_min, y_max;
-                                //Those 2 Are boundries for X AND Y position. 
-    private float x_min, x_max;
 
+    private int maxXpos = 6;
+    private int maxYpos = 6;
 
     private void Start()
     {
-        current_Shooting_Timer = shooting_Timer;
+        currentShootingTimer = shootingTimer;
     }
 
     void Update()
@@ -38,54 +29,41 @@ public class PlayerController : MonoBehaviour
     void PlayerMovement()
     {
         
-        //Vertical Movement
-        if (Input.GetAxisRaw("Vertical") > 0f)
-        {
-            Vector3 temp = transform.position;
-            temp.y += speed * Time.deltaTime;
-
-            if (temp.y > y_max)
-                temp.y = y_max;
-            transform.position = temp;
-        }
-        else if (Input.GetAxisRaw("Vertical") < 0f)
-        {
-            Vector3 temp = transform.position;
-            temp.y -= speed * Time.deltaTime;
-
-            if (temp.y < y_min)
-                temp.y = y_min;
-            
-            transform.position = temp;
-        }
-        
-        //Horizontal Movement
-        else if (Input.GetAxisRaw("Horizontal") > 0f)
-        {
-            Vector3 temp = transform.position;
-            temp.x += speed * Time.deltaTime;
-
-            if (temp.x < x_max)
-                temp.x = x_max;
-
-            transform.position = temp;
-        }
-        else if (Input.GetAxisRaw("Horizontal") < 0f)
-        {
-            Vector3 temp = transform.position;
-            temp.x -= speed * Time.deltaTime;
-
-            if (temp.x < x_min)
-                temp.x = x_min;
-
-            transform.position = temp;
-        }
+       
+    
+ 
+    if (Input.GetKeyDown("up") && transform.position.y < maxYpos)
+    {
+        Vector3 temp = transform.position;
+        temp.y += 1f;
+        transform.position = temp;
     }
-
+    else if (Input.GetKeyDown("down") && transform.position.y > -maxYpos)
+    {
+        Vector3 temp = transform.position;
+        temp.y -= 1f;
+        transform.position = temp;
+    }
+            
+    //Horizontal Movement
+    else if (Input.GetKeyDown("right") && transform.position.x < maxXpos)
+    {
+        Vector3 temp = transform.position;
+        temp.x += 1f;
+        transform.position = temp;
+    }
+    else if (Input.GetKeyDown("left") && transform.position.x > -maxXpos)
+    {
+        Vector3 temp = transform.position;
+        temp.x -= 1f;
+        transform.position = temp;
+    }
+    
+    }
     void Shoot()
     {
-        shooting_Timer += Time.deltaTime;
-        if (shooting_Timer > current_Shooting_Timer)
+        currentShootingTimer += Time.deltaTime;
+        if (currentShootingTimer > shootingTimer)
         {
             canShoot = true;
         }
@@ -95,15 +73,12 @@ public class PlayerController : MonoBehaviour
             if (canShoot)
             {
                 canShoot = false;
-                shooting_Timer = 0f;
-            
-                Instantiate(shooting_Bullets, shooting_Position.transform.position, Quaternion.identity);
-            
-                //play sound effects
+                currentShootingTimer = 0f;
+
+                Instantiate(shootingBullets, shootingPosition.transform.position, Quaternion.identity);
+
+                // play sound effects
             }
         }
     }
-
-    
-    
 }
