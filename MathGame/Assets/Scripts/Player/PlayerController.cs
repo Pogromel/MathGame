@@ -6,8 +6,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float shootingTimer = 0.5f;
     [SerializeField] private GameObject shootingPosition;
     [SerializeField] private GameObject shootingBullets;
-    [SerializeField] private float yMin, yMax;
-    [SerializeField] private float xMin, xMax;
 
     private float currentShootingTimer;
     private bool canShoot;
@@ -28,36 +26,32 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMovement()
     {
-        
-       
-    
- 
-    if (Input.GetKeyDown("up") && transform.position.y < maxYpos)
-    {
-        Vector3 temp = transform.position;
-        temp.y += 1f;
-        transform.position = temp;
-    }
-    else if (Input.GetKeyDown("down") && transform.position.y > -maxYpos)
-    {
-        Vector3 temp = transform.position;
-        temp.y -= 1f;
-        transform.position = temp;
-    }
-            
-    //Horizontal Movement
-    else if (Input.GetKeyDown("right") && transform.position.x < maxXpos)
-    {
-        Vector3 temp = transform.position;
-        temp.x += 1f;
-        transform.position = temp;
-    }
-    else if (Input.GetKeyDown("left") && transform.position.x > -maxXpos)
-    {
-        Vector3 temp = transform.position;
-        temp.x -= 1f;
-        transform.position = temp;
-    }
+        if (Input.GetKeyDown("up") && transform.position.y < maxYpos)
+        {
+            Vector3 temp = transform.position;
+            temp.y += 1f;
+            transform.position = temp;
+        }
+        else if (Input.GetKeyDown("down") && transform.position.y > -maxYpos)
+        {
+            Vector3 temp = transform.position;
+            temp.y -= 1f;
+            transform.position = temp;
+        }
+                
+        //Horizontal Movement
+        else if (Input.GetKeyDown("right") && transform.position.x < maxXpos)
+        {
+            Vector3 temp = transform.position;
+            temp.x += 1f;
+            transform.position = temp;
+        }
+        else if (Input.GetKeyDown("left") && transform.position.x > -maxXpos)
+        {
+            Vector3 temp = transform.position;
+            temp.x -= 1f;
+            transform.position = temp;
+        }
     
     }
     void Shoot()
