@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float shootingTimer = 0.25f;
+    
+    
     [SerializeField] private GameObject shootingPosition;
     [SerializeField] private GameObject shootingBullets;
 
     private float currentShootingTimer;
     private bool canShoot;
+    public float shootingTimer = 0.25f;
 
     private int maxXpos = 6;
     private int maxYpos = 6;
