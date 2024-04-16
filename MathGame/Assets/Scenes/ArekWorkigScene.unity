@@ -560,9 +560,17 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5626873751847536971, guid: c42f0d11c5e10ae42a24c691cb46e53a, type: 3}
+      propertyPath: shootingBullets
+      value: 
+      objectReference: {fileID: 6142512161495295656, guid: bc5c2ad5204305244b0fddb19e1e6301, type: 3}
+    - target: {fileID: 5626873751847536971, guid: c42f0d11c5e10ae42a24c691cb46e53a, type: 3}
       propertyPath: Shooting_Bullets
       value: 
       objectReference: {fileID: 6142512161495295656, guid: bc5c2ad5204305244b0fddb19e1e6301, type: 3}
+    - target: {fileID: 5626873751847536971, guid: c42f0d11c5e10ae42a24c691cb46e53a, type: 3}
+      propertyPath: shootingPosition
+      value: 
+      objectReference: {fileID: 724253113}
     - target: {fileID: 5626873751847536971, guid: c42f0d11c5e10ae42a24c691cb46e53a, type: 3}
       propertyPath: shooting_Bullets
       value: 
