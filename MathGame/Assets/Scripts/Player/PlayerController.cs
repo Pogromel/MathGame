@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float shootingTimer = 0.5f;
+    [SerializeField] private float shootingTimer = 0.25f;
     [SerializeField] private GameObject shootingPosition;
     [SerializeField] private GameObject shootingBullets;
 
@@ -51,13 +51,13 @@ public class PlayerController : MonoBehaviour
             Vector3 temp = transform.position;
             temp.x -= 1f;
             transform.position = temp;
-        }
+        }    
     
     }
     void Shoot()
     {
-        currentShootingTimer += Time.deltaTime;
-        if (currentShootingTimer > shootingTimer)
+        shootingTimer += Time.deltaTime;
+        if (shootingTimer > currentShootingTimer)
         {
             canShoot = true;
         }
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
             if (canShoot)
             {
                 canShoot = false;
-                currentShootingTimer = 0f;
+                shootingTimer = 0f;
 
                 Instantiate(shootingBullets, shootingPosition.transform.position, Quaternion.identity);
 
