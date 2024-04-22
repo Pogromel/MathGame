@@ -6,13 +6,13 @@ public class EnemyBase : MonoBehaviour
 {
 
     [SerializeField] private int moveSpeed = 3;
-    public int timeToDestroy = 5;
+
     
 
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("DestroyingEnemy", timeToDestroy);
+        
     }
 
     // Update is called once per frame
@@ -28,8 +28,13 @@ public class EnemyBase : MonoBehaviour
         transform.position = temp;
     }
     
-    public void DestroyingEnemy()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        gameObject.SetActive(false);
+        
+        if (collision.CompareTag("bullet"))
+        {
+          
+            Destroy(gameObject);
+        }
     }
 }

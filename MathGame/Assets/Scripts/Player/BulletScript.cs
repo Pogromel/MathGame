@@ -23,7 +23,7 @@ public class BulletScript : MonoBehaviour
     public void MovingBullet()
     {
         Vector3 temp = transform.position;
-        temp.x += speed * Time.deltaTime;
+        temp.y += speed * Time.deltaTime;
         transform.position = temp;
     }
 
