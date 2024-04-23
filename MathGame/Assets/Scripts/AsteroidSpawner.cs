@@ -25,7 +25,7 @@ public class AsteroidSpawner : MonoBehaviour
     private IEnumerator spawnAsteroid(float interval, GameObject enemy)
     {
         yield return new WaitForSeconds(interval);
-        GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(-5f, 5), Random.Range(-6f, 6f), 0),
+        GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(-6f, 6f), Random.Range(6f, 9f), 0),
             Quaternion.identity);
         StartCoroutine(spawnAsteroid(interval, enemy));
     }
