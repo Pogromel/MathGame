@@ -6,8 +6,8 @@ using UnityEngine;
 public class BulletScript : MonoBehaviour
 {
 
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float timeToDestroy = 100f;
+    public float speed = 5f;
+    public float timeToDestroy = 4f;
 
     private void Start()
     {
@@ -17,7 +17,7 @@ public class BulletScript : MonoBehaviour
     private void Update()
     {
         MovingBullet();
-        DestroyingBullet();
+        
     }
 
     public void MovingBullet()
