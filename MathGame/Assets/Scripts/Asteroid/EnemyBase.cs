@@ -36,5 +36,10 @@ public class EnemyBase : MonoBehaviour
           
             Destroy(gameObject);
         }
+
+        if (collision.CompareTag("BottomBarrier"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
