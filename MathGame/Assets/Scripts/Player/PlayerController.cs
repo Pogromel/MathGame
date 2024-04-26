@@ -5,14 +5,20 @@ public class PlayerController : MonoBehaviour
     
     
     [SerializeField] private GameObject shootingPosition;
+    [SerializeField] private GameObject shootingPositionTwo;
     [SerializeField] private GameObject shootingBullets;
 
     private float currentShootingTimer;
     private bool canShoot;
+    private bool SecoungShootingPointActive = false;
     public float shootingTimer = 0.25f;
+    
 
     private int maxXpos = 6;
     private int maxYpos = 6;
+
+    private int health = 3;
+    
 
     private void Start()
     {
@@ -23,6 +29,8 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMovement();
         Shoot();
+        
+        
     }
 
     void PlayerMovement()
@@ -72,8 +80,40 @@ public class PlayerController : MonoBehaviour
 
                 Instantiate(shootingBullets, shootingPosition.transform.position, Quaternion.identity);
 
+                if (SecoungShootingPointActive)
+                {
+                    Instantiate(shootingBullets, shootingPositionTwo.transform.position, Quaternion.identity);
+                }
                 // play sound effects
             }
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if (collision.CompareTag("Bolt"))
+        {
+            health += 1;
+
+            Destroy(collision.gameObject);        }
+        if (collision.CompareTag("Shield"))
+        {
+            health += 1;
+
+            Destroy(collision.gameObject);        }
+        if (collision.CompareTag("Thing"))
+        {
+            
+
+            Destroy(collision.gameObject);
+
+            SecoungShootingPointActive = true;
+        }
+        if (collision.CompareTag("Star"))
+        {
+            health += 1;
+
+            Destroy(collision.gameObject);        }
     }
 }

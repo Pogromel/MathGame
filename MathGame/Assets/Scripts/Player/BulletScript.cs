@@ -7,17 +7,12 @@ public class BulletScript : MonoBehaviour
 {
 
     public float speed = 5f;
-    public float timeToDestroy = 4f;
 
-    private void Start()
-    {
-        Invoke("DestroyingBullet", timeToDestroy);
-    }
 
     private void Update()
     {
         MovingBullet();
-        
+
     }
 
     public void MovingBullet()
@@ -27,8 +22,13 @@ public class BulletScript : MonoBehaviour
         transform.position = temp;
     }
 
-    public void DestroyingBullet()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        gameObject.SetActive(false);
+
+        if (collision.CompareTag("TopBarrier"))
+        {
+            Destroy(this.gameObject);
+        }
+
     }
 }
