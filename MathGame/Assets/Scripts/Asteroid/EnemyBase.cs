@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
 
     [SerializeField] private float moveSpeed = 0.5f;
+    [SerializeField] private List<GameObject> powerUpPrefab;
 
     
 
@@ -35,6 +37,17 @@ public class EnemyBase : MonoBehaviour
         {
           
             Destroy(gameObject);
+
+            float randomChance = Random.Range(0f, 1f);
+            
+            if (randomChance <= 0.25f)
+            {
+                int randomIndex = Random.Range(0, powerUpPrefab.Count);
+                Instantiate(powerUpPrefab[randomIndex], collision.transform.position, Quaternion.identity);
+            }
+           
+
+
         }
 
         if (collision.CompareTag("BottomBarrier"))
