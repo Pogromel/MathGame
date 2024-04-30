@@ -8,7 +8,12 @@ public class EnemyBase : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 0.5f;
     [SerializeField] private List<GameObject> powerUpPrefab;
+    private PlayerController playerController;
 
+    public void SetPlayerController(PlayerController controller)
+    {
+        playerController = controller;
+    }
     
 
     // Start is called before the first frame update
@@ -53,6 +58,17 @@ public class EnemyBase : MonoBehaviour
         if (collision.CompareTag("BottomBarrier"))
         {
             Destroy(gameObject);
+
+            if (playerController != null)
+            {
+                playerController.MinusHealth();
+
+                if (playerController.Health <= 0)
+                {
+                    Destroy(playerController.gameObject);
+                }
+            }
+            // refenrence to PlayerController That will Minus the health by 1; 
         }
     }
 }

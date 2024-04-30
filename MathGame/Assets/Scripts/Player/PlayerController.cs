@@ -12,6 +12,11 @@ public class PlayerController : MonoBehaviour
     private bool canShoot;
     private bool SecoungShootingPointActive = false;
     public float shootingTimer = 0.25f;
+
+    public int Health
+    {
+        get { return Health; }
+    } 
     
 
     private int maxXpos = 6;
@@ -115,5 +120,15 @@ public class PlayerController : MonoBehaviour
             health += 1;
 
             Destroy(collision.gameObject);        }
+    }
+
+    public void MinusHealth()
+    {
+        health--;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
