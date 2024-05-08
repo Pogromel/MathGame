@@ -41,7 +41,7 @@ public class EnemyBase : MonoBehaviour
         if (collision.CompareTag("Bullet"))
         {
           
-            Destroy(gameObject);
+            Destroy(gameObject); // as i dont have script for bullets. this will destroy asteroids on impact.
 
             float randomChance = Random.Range(0f, 1f);
             
@@ -57,18 +57,12 @@ public class EnemyBase : MonoBehaviour
 
         if (collision.CompareTag("BottomBarrier"))
         {
-            Destroy(gameObject);
-
             if (playerController != null)
             {
-                playerController.MinusHealth();
-
-                if (playerController.Health <= 0)
-                {
-                    Destroy(playerController.gameObject);
-                }
+                playerController.MinusHealth(); // Call MinusHealth on the PlayerController
             }
-            // refenrence to PlayerController That will Minus the health by 1; 
+
+            Destroy(gameObject); // Destroy the enemy (asteroid)
         }
     }
 }

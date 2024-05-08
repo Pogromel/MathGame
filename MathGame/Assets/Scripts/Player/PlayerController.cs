@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
     public int Health
     {
-        get { return Health; }
+        get { return health; }
     } 
     
 
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
         
         if (collision.CompareTag("Bolt"))
         {
-            health += 1;
+            
 
             Destroy(collision.gameObject);        }
         if (collision.CompareTag("Shield"))
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
         }
         if (collision.CompareTag("Star"))
         {
-            health += 1;
+            
 
             Destroy(collision.gameObject);        }
     }
@@ -128,7 +128,7 @@ public class PlayerController : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }
