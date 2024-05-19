@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneShift : MonoBehaviour
 {
-    public void NextScene(string sceneName)
+    public void NextScene(int sceneBuildIndex)
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneBuildIndex);
     }
 
     public void Quit()

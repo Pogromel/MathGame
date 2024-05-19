@@ -301,7 +301,7 @@ Transform:
   m_GameObject: {fileID: 83576511}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.4400024, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0.68, z: 0.1}
   m_LocalScale: {x: 15.481255, y: 17.880367, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1052,6 +1052,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1150366835}
   - component: {fileID: 1150366834}
+  - component: {fileID: 1150366836}
   m_Layer: 0
   m_Name: X,Ygraph
   m_TagString: Untagged
@@ -1120,12 +1121,27 @@ Transform:
   m_GameObject: {fileID: 1150366833}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0.62, z: 0}
+  m_LocalPosition: {x: 0.02, y: 0.22, z: 0}
   m_LocalScale: {x: 2.5466862, y: 2.522659, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1150366836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150366833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1382acba0cfb94283326e2edcbc4a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1150366834}
+  fadeStartDelay: 60
+  fadeDuration: 60
 --- !u!1 &1380613861
 GameObject:
   m_ObjectHideFlags: 0
