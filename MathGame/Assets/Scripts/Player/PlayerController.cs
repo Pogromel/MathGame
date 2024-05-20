@@ -5,18 +5,18 @@ public class PlayerController : MonoBehaviour
 {
     
     
-    [SerializeField] private GameObject shootingPosition;
-    [SerializeField] private GameObject shootingPositionTwo;
+    [SerializeField] private GameObject[] shootingPositions; 
     [SerializeField] private GameObject shootingBullets;
 
     private float currentShootingTimer;
     private bool canShoot;
-    private bool SecoungShootingPointActive = false;
     public float shootingTimer = 0.25f;
     
     private int health = 3;
     private bool isImmune = false;
     private float immunityDur = 4f;
+    
+    private int activeShootingPoints = 1;
     
 
     private void Start()
@@ -44,14 +44,13 @@ public class PlayerController : MonoBehaviour
             {
                 canShoot = false;
                 shootingTimer = 0f;
-
-                Quaternion flippedRotation = shootingPosition.transform.rotation * Quaternion.Euler(0, 0, 180);
-                Instantiate(shootingBullets, shootingPosition.transform.position, flippedRotation);
-
-                if (SecoungShootingPointActive)
+                
+                for (int i = 0; i < activeShootingPoints; i++)
                 {
-                    Instantiate(shootingBullets, shootingPositionTwo.transform.position, Quaternion.identity);
+                    Quaternion flippedRotation = shootingPositions[i].transform.rotation * Quaternion.Euler(0, 0, 180);
+                    Instantiate(shootingBullets, shootingPositions[i].transform.position, flippedRotation);
                 }
+                
                 // play sound effects
             }
         }
@@ -76,7 +75,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Thing"))
         {
             Destroy(collision.gameObject);
-            SecoungShootingPointActive = true;
+            IncreaseShootingPoints();
         }
         
         if (collision.CompareTag("Star"))
@@ -132,6 +131,14 @@ public class PlayerController : MonoBehaviour
         if (tag == "BottomBarrier")
         {
             TakeDamage(1);
+        }
+    }
+    
+    private void IncreaseShootingPoints()
+    {
+        if (activeShootingPoints < shootingPositions.Length)
+        {
+            activeShootingPoints++;
         }
     }
 }
