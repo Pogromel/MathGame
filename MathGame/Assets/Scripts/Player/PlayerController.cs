@@ -62,29 +62,28 @@ public class PlayerController : MonoBehaviour
         
         if (collision.CompareTag("Bolt"))
         {
-            health += 1;
-
-            Destroy(collision.gameObject);        }
+            Destroy(collision.gameObject);
+            
+        }
+        
         if (collision.CompareTag("Shield"))
         {
             health += 1;
-
-            Destroy(collision.gameObject);        }
+            Debug.Log("Picked up shield health: " + health);
+            Destroy(collision.gameObject);
+        }
+        
         if (collision.CompareTag("Thing"))
         {
-            
-
             Destroy(collision.gameObject);
-
             SecoungShootingPointActive = true;
         }
+        
         if (collision.CompareTag("Star"))
         {
-            health += 1;
-
             Destroy(collision.gameObject);
-            
         }
+        
         if (collision.CompareTag("Enemy") && !isImmune)
         {
             health -= 1;
@@ -96,10 +95,8 @@ public class PlayerController : MonoBehaviour
                 Die();
             }
         }
-        if (collision.CompareTag("BottomBarrier") && !isImmune)
-        {
-            TakeDamage(1);
-        }
+        
+        
         
     }
 
