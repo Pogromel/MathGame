@@ -61,25 +61,29 @@ public class PlayerController : MonoBehaviour
         
         if (collision.CompareTag("Bolt"))
         {
+            GetComponent<MathQuizController>().StartQuiz(HandleQuizResult);
+
             Destroy(collision.gameObject);
-            
         }
         
         if (collision.CompareTag("Shield"))
         {
-            health += 1;
-            Debug.Log("Picked up shield health: " + health);
+            GetComponent<MathQuizController>().StartQuiz(HandleQuizResult);
             Destroy(collision.gameObject);
         }
         
         if (collision.CompareTag("Thing"))
         {
+            GetComponent<MathQuizController>().StartQuiz(HandleQuizResult);
+
             Destroy(collision.gameObject);
-            IncreaseShootingPoints();
+            
         }
         
         if (collision.CompareTag("Star"))
         {
+            GetComponent<MathQuizController>().StartQuiz(HandleQuizResult);
+
             Destroy(collision.gameObject);
         }
         
@@ -139,6 +143,20 @@ public class PlayerController : MonoBehaviour
         if (activeShootingPoints < shootingPositions.Length)
         {
             activeShootingPoints++;
+        }
+    }
+    
+    private void HandleQuizResult(bool success)
+    {
+        if (success)
+        {
+            IncreaseShootingPoints(); 
+            health += 1; 
+            Debug.Log("Power-up applied! Health: " + health + ", Shooting Points: " + activeShootingPoints);
+        }
+        else
+        {
+            Debug.Log("Quiz failed or timed out, no power-up applied.");
         }
     }
 }
