@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -13,11 +14,9 @@ public class PlayerController : MonoBehaviour
     private bool SecoungShootingPointActive = false;
     public float shootingTimer = 0.25f;
     
-
-    private int maxXpos = 6;
-    private int maxYpos = 6;
-
     private int health = 3;
+    private bool isImmune = false;
+    private float immunityDur = 4f;
     
 
     private void Start()
@@ -27,42 +26,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        PlayerMovement();
         Shoot();
-        
-        
     }
 
-    void PlayerMovement()
-    {
-        if (Input.GetKeyDown("up") && transform.position.y < maxYpos)
-        {
-            Vector3 temp = transform.position;
-            temp.y += 1f;
-            transform.position = temp;
-        }
-        else if (Input.GetKeyDown("down") && transform.position.y > -maxYpos)
-        {
-            Vector3 temp = transform.position;
-            temp.y -= 1f;
-            transform.position = temp;
-        }
-                
-        //Horizontal Movement
-        else if (Input.GetKeyDown("right") && transform.position.x < maxXpos)
-        {
-            Vector3 temp = transform.position;
-            temp.x += 1f;
-            transform.position = temp;
-        }
-        else if (Input.GetKeyDown("left") && transform.position.x > -maxXpos)
-        {
-            Vector3 temp = transform.position;
-            temp.x -= 1f;
-            transform.position = temp;
-        }    
     
-    }
     void Shoot()
     {
         shootingTimer += Time.deltaTime;
@@ -78,7 +45,8 @@ public class PlayerController : MonoBehaviour
                 canShoot = false;
                 shootingTimer = 0f;
 
-                Instantiate(shootingBullets, shootingPosition.transform.position, Quaternion.identity);
+                Quaternion flippedRotation = shootingPosition.transform.rotation * Quaternion.Euler(0, 0, 180);
+                Instantiate(shootingBullets, shootingPosition.transform.position, flippedRotation);
 
                 if (SecoungShootingPointActive)
                 {
@@ -114,6 +82,59 @@ public class PlayerController : MonoBehaviour
         {
             health += 1;
 
-            Destroy(collision.gameObject);        }
+            Destroy(collision.gameObject);
+            
+        }
+        if (collision.CompareTag("Enemy") && !isImmune)
+        {
+            health -= 1;
+            Debug.Log("Hit by Enemy Health: " + health);
+            StartCoroutine(ActivateImmunity());
+
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+        if (collision.CompareTag("BottomBarrier") && !isImmune)
+        {
+            TakeDamage(1);
+        }
+        
+    }
+
+    private IEnumerator ActivateImmunity()
+    {
+        isImmune = true;
+        yield return new WaitForSeconds(immunityDur);
+        isImmune = false;
+    }
+
+    public void Die()
+    {
+        Debug.Log("Player Died");
+        Destroy(gameObject);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (!isImmune)
+        {
+            health -= damage;
+            Debug.Log("Player took damage Health: " + health);
+            StartCoroutine(ActivateImmunity());
+
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+    }
+    public void HandleCollision(GameObject other, string tag)
+    {
+        if (tag == "BottomBarrier")
+        {
+            TakeDamage(1);
+        }
     }
 }

@@ -8,7 +8,7 @@ public class EnemyBase : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 0.5f;
     [SerializeField] private List<GameObject> powerUpPrefab;
-
+    [SerializeField] private GameObject destroyEffect;
     
 
     // Start is called before the first frame update
@@ -21,6 +21,7 @@ public class EnemyBase : MonoBehaviour
     void Update()
     {
         MovingEnemy();
+        
     }
     
     public void MovingEnemy()
@@ -30,7 +31,7 @@ public class EnemyBase : MonoBehaviour
         transform.position = temp;
     }
     
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         
         if (collision.CompareTag("Bullet"))
@@ -45,14 +46,26 @@ public class EnemyBase : MonoBehaviour
                 int randomIndex = Random.Range(0, powerUpPrefab.Count);
                 Instantiate(powerUpPrefab[randomIndex], collision.transform.position, Quaternion.identity);
             }
-           
+            GameObject explode = Instantiate(destroyEffect, transform.position, transform.rotation);
+            Destroy(explode, 0.75f);
 
 
         }
 
         if (collision.CompareTag("BottomBarrier"))
         {
+            Debug.Log("Enemy collided");
+
+            PlayerController player = FindObjectOfType<PlayerController>(); 
+            if (player != null)
+            {
+                Debug.Log("Player found");
+                player.HandleCollision(gameObject, collision.tag);
+            }
+
             Destroy(gameObject);
+            GameObject explode = Instantiate(destroyEffect, transform.position, transform.rotation);
+            Destroy(explode, 0.75f);
         }
     }
 }

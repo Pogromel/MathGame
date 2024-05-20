@@ -11,6 +11,7 @@ TagManager:
   - Thing
   - BottomBarrier
   - TopBarrier
+  - Enemy
   layers:
   - Default
   - TransparentFX

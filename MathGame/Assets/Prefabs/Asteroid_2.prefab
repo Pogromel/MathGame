@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 566205251251010606}
   - component: {fileID: 4934826736572081640}
   - component: {fileID: 718763664469639603}
+  - component: {fileID: -1291983604875535829}
   m_Layer: 7
   m_Name: Asteroid_2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,3 +140,31 @@ MonoBehaviour:
   - {fileID: 5701550985867048236, guid: 5b75a5c27a57cac46892e62e0c9fae56, type: 3}
   - {fileID: 325170598963561249, guid: b6aeb7b88a5049c4dab336be3ff8dd36, type: 3}
   - {fileID: 6019509298039752706, guid: 67236ef55b9164140a8e3d0b921795f0, type: 3}
+  destroyEffect: {fileID: 2815832549669673620, guid: cdd4f8f19b5d2fe46ad2d49e28b8a88d, type: 3}
+--- !u!50 &-1291983604875535829
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4427321594256072728}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
