@@ -12,6 +12,7 @@ TagManager:
   - BottomBarrier
   - TopBarrier
   - Enemy
+  - Input
   layers:
   - Default
   - TransparentFX

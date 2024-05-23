@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private bool canShoot;
     public float shootingTimer = 0.25f;
     
-    private int health = 3;
+    public int health = 3;
     private bool isImmune = false;
     private float immunityDur = 4f;
     
