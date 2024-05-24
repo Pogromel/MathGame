@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] private GameObject[] shootingPositions; 
     [SerializeField] private GameObject shootingBullets;
+    [SerializeField] private ParticleSystem shootingEffect;
+    [SerializeField] private HealthBarUi healthBarUi;
+    [SerializeField] private AudioSource shootingAudioSource;
 
     private float currentShootingTimer;
     private bool canShoot;
@@ -22,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         currentShootingTimer = shootingTimer;
+        UpdateHealthBar();
     }
 
     void Update()
@@ -51,7 +55,7 @@ public class PlayerController : MonoBehaviour
                     Instantiate(shootingBullets, shootingPositions[i].transform.position, flippedRotation);
                 }
                 
-                // play sound effects
+                shootingAudioSource.Play();
             }
         }
     }
@@ -97,6 +101,10 @@ public class PlayerController : MonoBehaviour
             {
                 Die();
             }
+            else
+            {
+                UpdateHealthBar();
+            }
         }
         
         
@@ -128,6 +136,10 @@ public class PlayerController : MonoBehaviour
             {
                 Die();
             }
+            else
+            {
+                UpdateHealthBar();
+            }
         }
     }
     public void HandleCollision(GameObject other, string tag)
@@ -153,10 +165,19 @@ public class PlayerController : MonoBehaviour
             IncreaseShootingPoints(); 
             health += 1; 
             Debug.Log("Power-up applied! Health: " + health + ", Shooting Points: " + activeShootingPoints);
+            UpdateHealthBar();
         }
         else
         {
             Debug.Log("Quiz failed or timed out, no power-up applied.");
         }
     }
+    private void UpdateHealthBar()
+    {
+        float healthPercentage = (float)health / 6; // Assuming max health is 3
+        healthBarUi.UpdateHealth(healthPercentage);
+    }
+    
+    
+    
 }

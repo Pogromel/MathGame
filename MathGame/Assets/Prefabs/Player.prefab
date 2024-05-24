@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 420236793606943136}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShootingPoint2
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7784090089230591215}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShootingPoint4
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5224720623392257882}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShootingPoint5
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 952073379717044735}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShootingPoint3
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -133,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7970737490058997453}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShootingPoint1
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -166,9 +166,10 @@ GameObject:
   - component: {fileID: 5342399927445975702}
   - component: {fileID: 2022881665193067603}
   - component: {fileID: 5626873751847536971}
+  - component: {fileID: 21337190005039005}
   - component: {fileID: 5832260454251936621}
   - component: {fileID: 7206693803344730875}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +186,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.03, y: -3.56, z: 0}
-  m_LocalScale: {x: 3.3618848, y: 3.3618848, z: 0.5603141}
+  m_LocalScale: {x: 3.3618848, y: 3.3618848, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7970737490058997453}
@@ -265,9 +266,28 @@ MonoBehaviour:
   - {fileID: 7463268833534766080}
   - {fileID: 4547476902981659817}
   - {fileID: 6652005338578678299}
-  shootingPositionTwo: {fileID: 806918024340150386}
   shootingBullets: {fileID: 6142512161495295656, guid: bc5c2ad5204305244b0fddb19e1e6301, type: 3}
+  shootingEffect: {fileID: 0}
+  healthBarUi: {fileID: 0}
   shootingTimer: 0.25
+  health: 3
+--- !u!114 &21337190005039005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8099155151684081367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af431b28ebba4ae41818601da69423f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quizPanel: {fileID: 0}
+  questionText: {fileID: 0}
+  answerInput: {fileID: 0}
+  timerText: {fileID: 0}
+  submitButton: {fileID: 0}
 --- !u!61 &5832260454251936621
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -297,7 +317,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
