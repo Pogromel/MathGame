@@ -9,6 +9,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] private float moveSpeed = 0.5f;
     [SerializeField] private List<GameObject> powerUpPrefab;
     [SerializeField] private GameObject destroyEffect;
+    [SerializeField] private AudioSource destroySoundEffect;
     
 
     // Start is called before the first frame update
@@ -36,8 +37,9 @@ public class EnemyBase : MonoBehaviour
         
         if (collision.CompareTag("Bullet"))
         {
-          
+            
             Destroy(gameObject);
+            destroySoundEffect.Play();
 
             float randomChance = Random.Range(0f, 1f);
             
@@ -48,6 +50,7 @@ public class EnemyBase : MonoBehaviour
             }
             GameObject explode = Instantiate(destroyEffect, transform.position, transform.rotation);
             Destroy(explode, 0.75f);
+            
 
 
         }
@@ -67,5 +70,16 @@ public class EnemyBase : MonoBehaviour
             GameObject explode = Instantiate(destroyEffect, transform.position, transform.rotation);
             Destroy(explode, 0.75f);
         }
+        
+        if (collision.CompareTag("Player"))
+        {
+            
+
+            Destroy(gameObject);
+            GameObject explode = Instantiate(destroyEffect, transform.position, transform.rotation);
+            Destroy(explode, 0.75f);
+        }
+        
+        
     }
 }
