@@ -1,20 +1,18 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BackGroundScroller : MonoBehaviour
 {
     [SerializeField] public float Speed_Scrol = 0.1f;
     [SerializeField] private float y_Scroll;
-    [SerializeField] private MeshRenderer Material_Renderer;
-    
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
     private void Awake()
     {
-        Material_Renderer = GetComponent<MeshRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    
+
     void Update()
     {
         Scroll();
@@ -23,9 +21,10 @@ public class BackGroundScroller : MonoBehaviour
     void Scroll()
     {
         y_Scroll = Time.time * Speed_Scrol;
-        Vector2 offset = new Vector2(0f , y_Scroll);
-        Material_Renderer.sharedMaterial.SetTextureOffset("_MainTex", offset);
-
+        Vector2 offset = new Vector2(0f, y_Scroll);
+        if (spriteRenderer.material.HasProperty("_MainTex"))
+        {
+            spriteRenderer.material.SetTextureOffset("_MainTex", offset);
+        }
     }
-
 }

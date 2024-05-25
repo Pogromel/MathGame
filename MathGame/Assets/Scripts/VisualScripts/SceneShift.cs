@@ -8,7 +8,7 @@ public class SceneShift : MonoBehaviour
 { 
     public void NextScene(int sceneBuildIndex)
     {
-        SceneManager.LoadScene(sceneBuildIndex);
+        SceneManager.LoadScene("Game");
     }
 
     public void Quit()
