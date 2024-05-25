@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private float immunityDur = 4f;
     
     private int activeShootingPoints = 1;
-    
+    private Coroutine shootingPointsResetCoroutine;
 
     private void Start()
     {
@@ -62,32 +62,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        if (collision.CompareTag("Bolt"))
-        {
-            GetComponent<MathQuizController>().StartQuiz(HandleQuizResult);
-
-            Destroy(collision.gameObject);
-        }
-        
         if (collision.CompareTag("Shield"))
         {
-            GetComponent<MathQuizController>().StartQuiz(HandleQuizResult);
+            GetComponent<MathQuizController>().StartQuiz(HandleShieldQuizResult);
             Destroy(collision.gameObject);
         }
-        
+
         if (collision.CompareTag("Thing"))
         {
-            GetComponent<MathQuizController>().StartQuiz(HandleQuizResult);
-
-            Destroy(collision.gameObject);
-            
-        }
-        
-        if (collision.CompareTag("Star"))
-        {
-            GetComponent<MathQuizController>().StartQuiz(HandleQuizResult);
-
+            GetComponent<MathQuizController>().StartQuiz(HandleThingQuizResult);
             Destroy(collision.gameObject);
         }
         
@@ -155,26 +138,53 @@ public class PlayerController : MonoBehaviour
         if (activeShootingPoints < shootingPositions.Length)
         {
             activeShootingPoints++;
+            ResetShootingPointsTimer();
         }
     }
+    private void ResetShootingPointsTimer()
+    {
+        if (shootingPointsResetCoroutine != null)
+        {
+            StopCoroutine(shootingPointsResetCoroutine);
+        }
+        shootingPointsResetCoroutine = StartCoroutine(ResetShootingPoints());
+    }
+
+    private IEnumerator ResetShootingPoints()
+    {
+        yield return new WaitForSeconds(20f);
+        activeShootingPoints = 1;
+    }
     
-    private void HandleQuizResult(bool success)
+    private void HandleShieldQuizResult(bool success)
     {
         if (success)
         {
-            IncreaseShootingPoints(); 
-            health += 1; 
-            Debug.Log("Power-up applied! Health: " + health + ", Shooting Points: " + activeShootingPoints);
+            health = Mathf.Min(health + 1, 6); 
+            Debug.Log("Shield power-up applied! Health: " + health);
             UpdateHealthBar();
         }
         else
         {
-            Debug.Log("Quiz failed or timed out, no power-up applied.");
+            Debug.Log("Quiz failed or timed out, no shield power-up applied.");
+        }
+    }
+
+    private void HandleThingQuizResult(bool success)
+    {
+        if (success)
+        {
+            IncreaseShootingPoints();
+            Debug.Log("Thing power-up applied! Shooting Points: " + activeShootingPoints);
+        }
+        else
+        {
+            Debug.Log("Quiz failed or timed out, no thing power-up applied.");
         }
     }
     private void UpdateHealthBar()
     {
-        float healthPercentage = (float)health / 6; // Assuming max health is 3
+        float healthPercentage = (float)health / 6; 
         healthBarUi.UpdateHealth(healthPercentage);
     }
     

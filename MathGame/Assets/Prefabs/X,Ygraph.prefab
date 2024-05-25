@@ -98,5 +98,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 5161229581416322214}
-  fadeStartDelay: 1
-  fadeDuration: 10
+  fadeStartDelay: 60
+  fadeDuration: 120

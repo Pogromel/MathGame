@@ -7,6 +7,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] private float moveSpeed = 0.5f;
     [SerializeField] private List<GameObject> powerUpPrefab;
     [SerializeField] private GameObject destroyEffect;
+    [SerializeField] private AudioSource destroySoundEffectPrefab;
 
     private void Awake()
     {
@@ -33,6 +34,13 @@ public class EnemyBase : MonoBehaviour
     {
         if (collision.CompareTag("Bullet"))
         {
+            if (destroySoundEffectPrefab != null)
+            {
+                AudioSource destroySound = Instantiate(destroySoundEffectPrefab, transform.position, Quaternion.identity);
+                destroySound.Play();
+                Destroy(destroySound.gameObject, destroySound.clip.length);
+            }
+            
             Destroy(gameObject);
             if (scoreScript != null)
             {
@@ -44,11 +52,14 @@ public class EnemyBase : MonoBehaviour
             }
 
             float randomChance = Random.Range(0f, 1f);
-            if (randomChance <= 0.25f)
+            if (randomChance <= 0.20f)
             {
                 int randomIndex = Random.Range(0, powerUpPrefab.Count);
                 Instantiate(powerUpPrefab[randomIndex], collision.transform.position, Quaternion.identity);
             }
+            
+            
+            
             GameObject explode = Instantiate(destroyEffect, transform.position, transform.rotation);
             Destroy(explode, 0.75f);
         }
@@ -62,6 +73,15 @@ public class EnemyBase : MonoBehaviour
                 Debug.Log("Player found");
                 player.HandleCollision(gameObject, collision.tag);
             }
+
+            Destroy(gameObject);
+            GameObject explode = Instantiate(destroyEffect, transform.position, transform.rotation);
+            Destroy(explode, 0.75f);
+        }
+        
+        if (collision.CompareTag("Player"))
+        {
+            
 
             Destroy(gameObject);
             GameObject explode = Instantiate(destroyEffect, transform.position, transform.rotation);

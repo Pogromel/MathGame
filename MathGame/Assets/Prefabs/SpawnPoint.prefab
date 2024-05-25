@@ -100,4 +100,4 @@ MonoBehaviour:
   Asteroid1: {fileID: 345072284914700798, guid: ea5b62991f4ca3747a06811835c1c470, type: 3}
   Asteroid2: {fileID: 4427321594256072728, guid: 810e2bbf0811777468a4a2b31558bb25, type: 3}
   Asteroid3: {fileID: 2071043147574335558, guid: 6ce8a54489cbe7d45b55783c316529fd, type: 3}
-  SpawnInterval: 5
+  initialSpawnInterval: 16

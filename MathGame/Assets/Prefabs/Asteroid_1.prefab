@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6c98f83060535c549a556801d4c328a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -161,10 +161,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4472e691aff3ef459a1b2cdf86652a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreScript: {fileID: 0}
   moveSpeed: 0.2
   powerUpPrefab:
-  - {fileID: 9045591558933063169, guid: ba2f186a0586a934f94e3f4aa57529f3, type: 3}
   - {fileID: 5701550985867048236, guid: 5b75a5c27a57cac46892e62e0c9fae56, type: 3}
-  - {fileID: 325170598963561249, guid: b6aeb7b88a5049c4dab336be3ff8dd36, type: 3}
   - {fileID: 6019509298039752706, guid: 67236ef55b9164140a8e3d0b921795f0, type: 3}
   destroyEffect: {fileID: 2815832549669673620, guid: cdd4f8f19b5d2fe46ad2d49e28b8a88d, type: 3}
+  destroySoundEffectPrefab: {fileID: 5112930327178784308, guid: ca8eda6adb84cdb46b92c4b916a7be30, type: 3}
