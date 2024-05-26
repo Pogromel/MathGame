@@ -53,10 +53,10 @@ public class PauseMenuScript : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void Quit()
+    public void Quit(int sceneBuildIndex)
     {
-        Debug.Log("Game has been exited!");
-        Application.Quit();
+        Debug.Log("Game has been exited to main Menu!");
+        SceneManager.LoadScene(sceneBuildIndex);
     }
 
     public void PauseGame()
@@ -64,13 +64,13 @@ public class PauseMenuScript : MonoBehaviour
         Debug.Log("Game Paused");
         if (playerScript.health <= 0)
         {
-            menuText.text = "YOU DIED";
+            menuText.text = "game over";
             RestartBtn.SetActive(true);
             ResumeBtn.SetActive(false);
         }
         else
         {
-            menuText.text = "PAUSED";
+            menuText.text = "paused";
             RestartBtn.SetActive(false);
             ResumeBtn.SetActive(true);
         }

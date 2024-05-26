@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
 
             if (health <= 0)
             {
+                UpdateHealthBar();
                 Die();
             }
             else
@@ -184,7 +185,7 @@ public class PlayerController : MonoBehaviour
     }
     private void UpdateHealthBar()
     {
-        float healthPercentage = (float)health / 6; 
+        float healthPercentage = (float)health / 3; 
         healthBarUi.UpdateHealth(healthPercentage);
     }
     
