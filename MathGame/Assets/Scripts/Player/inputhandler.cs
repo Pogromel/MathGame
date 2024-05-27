@@ -11,7 +11,7 @@ public class inputhandler : MonoBehaviour
     private int currentXpos = 0;
     private int currentYpos = 0;
     private int maxXpos = 6;
-    private int maxYpos = 6;
+    private int maxYpos = 3;
     public void changePlayerPosition()
     {
         string inputX = inputFieldX.text;
