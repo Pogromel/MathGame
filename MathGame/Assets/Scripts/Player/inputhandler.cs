@@ -12,6 +12,7 @@ public class inputhandler : MonoBehaviour
     private int currentYpos = 0;
     private int maxXpos = 6;
     private int maxYpos = 3;
+    private int minYpos = -6;
     public void changePlayerPosition()
     {
         string inputX = inputFieldX.text;
@@ -23,7 +24,7 @@ public class inputhandler : MonoBehaviour
             int inputXint = int.Parse(inputX) + currentXpos;
             int inputYint = int.Parse(inputY) + currentYpos;
             Debug.Log("inputXint " + inputXint);
-            if ((inputXint <= maxXpos && inputXint >= -maxXpos) && (inputYint <= maxYpos && inputYint >= -maxYpos))
+            if ((inputXint <= maxXpos && inputXint >= -maxXpos) && (inputYint <= maxYpos && inputYint >= minYpos))
             {
                 currentXpos = inputXint;
                 currentYpos = inputYint;

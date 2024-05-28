@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
             canShoot = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             if (canShoot)
             {

@@ -49,14 +49,14 @@ public class PauseMenuScript : MonoBehaviour
     public void NextScene(int sceneBuildIndex)
     {
         Debug.Log("Game has been restarted!");
-        SceneManager.LoadScene(sceneBuildIndex);
+        SceneManager.LoadScene("Game");
         Time.timeScale = 1f;
     }
 
     public void Quit(int sceneBuildIndex)
     {
         Debug.Log("Game has been exited to main Menu!");
-        SceneManager.LoadScene(sceneBuildIndex);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void PauseGame()
@@ -71,7 +71,7 @@ public class PauseMenuScript : MonoBehaviour
         else
         {
             menuText.text = "paused";
-            RestartBtn.SetActive(false);
+            RestartBtn.SetActive(true);
             ResumeBtn.SetActive(true);
         }
         pauseMenu.SetActive(true);
