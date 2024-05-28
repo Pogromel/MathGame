@@ -1304,8 +1304,8 @@ MonoBehaviour:
   m_text: "In this game you will be using vectors to move around the ship in order
     to destroy asteroids. In order to do this, you will be asked to input an x and
     y value to submit, which will then be added to the current xy values of the ship.
-    In a real world application this vector would be in the form: \n(x\n y)\nPress
-    [SPACE] to fire at asteroids"
+    In a real world application this vector would be in the form: \n(x - between
+    -6 and 6\n y - betwwen 3 and -6)\nPress [F] to fire at asteroids"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

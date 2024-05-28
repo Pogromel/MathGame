@@ -4,7 +4,7 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour
 {
     [SerializeField] public ScoreUIScript scoreScript;
-    [SerializeField] private float moveSpeed = 0.5f;
+    [SerializeField] private float moveSpeed = 0.4f;
     [SerializeField] private List<GameObject> powerUpPrefab;
     [SerializeField] private GameObject destroyEffect;
     [SerializeField] private AudioSource destroySoundEffectPrefab;
@@ -52,7 +52,7 @@ public class EnemyBase : MonoBehaviour
             }
 
             float randomChance = Random.Range(0f, 1f);
-            if (randomChance <= 0.20f)
+            if (randomChance <= 0.28f)
             {
                 int randomIndex = Random.Range(0, powerUpPrefab.Count);
                 Instantiate(powerUpPrefab[randomIndex], collision.transform.position, Quaternion.identity);
